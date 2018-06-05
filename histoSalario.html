@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="js/d3.v4.min.js"></script>
+<script type="text/javascript">
+	ellipse(203,197,277,309);
+
+	function highlightYear(ano){
+		document.getElementById("choosenYear").value = ano;
+		var arrAnos = document.getElementById("anos").children;
+
+		var arrBarras = document.getElementById("rects").children;
+
+		for(var i =0; i < arrAnos.length; i++){
+			if(ano==arrAnos[i].innerHTML)
+				arrBarras[i].style = "stroke:black;stroke-width:3px;";
+			else
+				arrBarras[i].style = "stroke:white;stroke-width:1px;";
+		}
+
+	}
+
+</script>
+	<style>
+
+	.chart div {
+	  font: 10px sans-serif;
+	  background-color: steelblue;
+	  text-align: right;
+	  padding: 3px;
+	  margin: 1px;
+	  color: white;
+	}
+
+	.menor1 {
+	  fill: #FF0000;
+	}
+	.mais1to2{
+		fill:#04dd00;
+	}
+
+	.maisqto3{
+		fill: #365A7D;
+	}
+
+	.maisq3{
+		fill: #9F705B;
+	}
+	</style>
+	<title></title>
+</head>
+<body>
+ <script src="datasetSalario.js"></script>
+
+ <svg id="initials" width="100%" height="400">
+ 	<g id="rects" transform="translate(0, 300) scale(1, -1)">
+	</g>
+	<g id="anos" transform="translate(0, 10)">
+		</g>
+	<g id="legenda" transform="translate(0, 350) ">
+	
+	</g>
+</svg>
+<script>
+	/****************Histograma de Salario**************/
+	//Barras
+	d3.select("body").select("svg").select("#rects").selectAll("rect").data(salario).enter().append("rect").attr("width",40).attr("height",function(d){return d.qtde*5;}).attr("x",function(d){return salario.indexOf(d)*45; }).attr("y",5).attr("class",function(d){return d.classe;});
+
+	//valores das barras
+	d3.select("body").select("svg").selectAll("rects").data(salario).enter().append("text").attr("width",5).attr("style","font-size:12px; font-family:Arial;").text(function(d){return d.qtde;}).attr("x",function(d){return salario.indexOf(d)*45 + 15; }).attr("y",function(d){return 310 - d.qtde*5; });
+
+	//anos
+	d3.select("body").select("svg").select("#anos").selectAll("text").data(salario).enter().append("text").attr("width",5).attr("style","font-size:12px; font-family:Arial;").text(function(d){return d.year;}).attr("x",function(d){return salario.indexOf(d)*45 + 8; }).attr("y",function(d){return 300; });
+
+	var dataUnique = [];
+	for(var i = 0; i < salario.length; i ++){
+		if(dataUnique.indexOf(salario[i].classe) == -1){
+			dataUnique.push(salario[i].classe);
+		}
+		
+	}
+
+	//Legenda
+	d3.select("body").select("svg").select("#legenda").selectAll("rect").data(dataUnique).enter().append("rect").attr("width",10).attr("height",10).attr("x",function(d){return dataUnique.indexOf(d)*65; }).attr("y",5).attr("class",function(d){return d;});
+
+	d3.select("body").select("svg").select("#legenda").selectAll("text").data(dataUnique).enter().append("text").attr("width",10).attr("height",10).attr("x",function(d){return dataUnique.indexOf(d)*65; }).attr("y",25).attr("style","font-size:12px; font-family:Arial;").text(function(d){return d;});
+
+	/***********************Histograma de trabalho************************************/
+</script>
+<!--<div id="controls">
+  <label for="year">Ano:</label>
+  1990
+  <input type="text" name="choosenYear" maxlength="4" id="choosenYear" readonly="" style="width: 40px;">
+  <input type="range" id="year" min="1990" max="2017" value="2002"
+     onchange="highlightYear(this.value);">
+  2017
+</div>-->
+</body>
+</html>

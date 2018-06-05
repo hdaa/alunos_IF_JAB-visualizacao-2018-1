@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="js/d3.v4.min.js"></script>
+<!--    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.45.0/mapbox-gl.css' rel='stylesheet' />-->
+    <link rel="stylesheet" href="js/leaflet/leaflet.css"/>
+    <script src="js/leaflet/leaflet.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="css/mapstyle.css"/>
+    <style type="text/css">#mapid { height: 500px; width: 600px;}</style>
+</head>
+  <body>
+    <div id="mapid"></div>
+    <script src="regiao_recife.js"></script>
+    <script src="data/alunoJaboatao2.js"></script>
+	<script type="text/javascript" src="mapaPorCidade.js"></script>
+	<script type="text/javascript" src="js/histoRenda.js"></script>  
+
+	  
+	  <div id="descPeriodo" style="float:left;">Período Letivo: 20162     Cidade: Jaboatão</div>
+	  <div id="histoRenda" style="float:right;">
+	  	<svg id="svgRenda"></svg>
+	  	
+	  </div>
+	  <div>
+		  2016.2<input type="radio" name="periodo" id="20162" onclick="changePeriodo();" checked>
+		  2017.1<input type="radio" name="periodo" id="20171" onclick="changePeriodo();">
+		  2017.2<input type="radio" name="periodo" id="20172" onclick="changePeriodo();">
+		  2018.1<input type="radio" name="periodo" id="20181" onclick="changePeriodo();">
+	  </div>
+	  <div>
+		  Jaboatão<input type="radio" name="cidade" id="2607901" onclick="changePeriodo();" checked>
+		  Recife<input type="radio" name="cidade" id="2611606" onclick="changePeriodo();">
+	  </div>
+	  <script>changePeriodo();</script>
+</body>
+</html>
