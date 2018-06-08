@@ -2,7 +2,7 @@ Salário
 
 Até 1 salário mínimo - A
 Mais de 1 a 2 salários mínimos - B
-Mais de  até 3 salários mínimos - C
+Mais de 2 até 3 salários mínimos - C
 Mais de 3 até 4 salários mínimos - D
 Mais de 5 até 10 salários mínimos - E
 Mais de 10 salários mínimos - F
