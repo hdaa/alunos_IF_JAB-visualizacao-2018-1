@@ -9,31 +9,65 @@
     <script src="js/leaflet/leaflet.js"></script>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<link rel="stylesheet" href="css/mapstyle.css"/>
-    <style type="text/css">#mapid { height: 500px; width: 600px;}</style>
+    <style type="text/css">#mapid { height: 500px; width: 600px;}
+    #visus{
+		float: top;
+		height: 600px;
+	}
+
+    #mapid{
+		float: left;
+		width:45%;
+		height: 600px;
+	}
+
+	#histoRenda{
+		float: right;
+		border-width:2px;
+		width:55%;
+		height: auto;
+	}
+	#seletores{
+		position: relative;
+		float: bottom;
+		border-width:2px;
+		width:auto;
+		height: auto;
+	}
+</style>
 </head>
   <body>
     <div id="mapid"></div>
     <script src="regiao_recife.js"></script>
     <script src="data/alunoJaboatao2.js"></script>
 	<script type="text/javascript" src="mapaPorCidade.js"></script>
-	<script type="text/javascript" src="js/histoRenda.js"></script>  
 
-	  
-	  <div id="descPeriodo" style="float:left;">Período Letivo: 20162     Cidade: Jaboatão</div>
-	  <div id="histoRenda" style="float:right;">
-	  	<svg id="svgRenda"></svg>
-	  	
+	<div id="visus">
+		<script type="text/javascript"> 
+			var map = L.map('mapid').setView([-8.1721658, -34.9986835], 12);
+			$("#visus").append($("#mapid"));
+		</script>
+	  <div id="histoRenda">
+	  	<!--<iframe src="stackedBarChart.html" height=600 width=100%></iframe>-->
+	  	<svg id="svgRenda" width="960" height="500">
+	  		<g></g>
+	  	</svg>
 	  </div>
+	</div>
+
+	<div id="seletores">
 	  <div>
-		  2016.2<input type="radio" name="periodo" id="20162" onclick="changePeriodo();" checked>
-		  2017.1<input type="radio" name="periodo" id="20171" onclick="changePeriodo();">
-		  2017.2<input type="radio" name="periodo" id="20172" onclick="changePeriodo();">
-		  2018.1<input type="radio" name="periodo" id="20181" onclick="changePeriodo();">
+		  2016.2<input type="radio" name="periodo" id="20162" onclick="changePeriodo();geraHistogramaRenda('2016.2');" checked>
+		  2017.1<input type="radio" name="periodo" id="20171" onclick="changePeriodo();geraHistogramaRenda('2017.1');">
+		  2017.2<input type="radio" name="periodo" id="20172" onclick="changePeriodo();geraHistogramaRenda('2017.2');">
+		  2018.1<input type="radio" name="periodo" id="20181" onclick="changePeriodo();geraHistogramaRenda('2018.1');">
 	  </div>
+	  <div id="descPeriodo">Período Letivo: 20162     Cidade: Jaboatão</div>
 	  <div>
 		  Jaboatão<input type="radio" name="cidade" id="2607901" onclick="changePeriodo();" checked>
 		  Recife<input type="radio" name="cidade" id="2611606" onclick="changePeriodo();">
 	  </div>
-	  <script>changePeriodo();</script>
+	</div>
+	  <script>changePeriodo(); geraHistogramaRenda("2016.2");</script>
 </body>
 </html>
